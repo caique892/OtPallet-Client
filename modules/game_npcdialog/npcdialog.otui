@@ -1,0 +1,73 @@
+HeadlessWindow
+  id: npcDialogWindow
+  image-source: imagens/window
+  size: 568 309
+  anchors.horizontalCenter: parent.horizontalCenter
+  anchors.top: parent.top
+  margin-top: 50
+  @onEnter: modules.game_npcdialog.hide()
+  @onEscape: modules.game_npcdialog.hide()
+
+  Label
+    id: labelNpcName
+    text-align: left
+    color: white
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    margin-top: 57
+    margin-left: 240
+    phantom: true
+
+  Label
+    id: labelTalk
+    text-align: left
+    color: white
+    anchors.top: labelNpcName.top
+    anchors.left: parent.left
+    anchors.right: parent.right
+    text-wrap: true
+    text-auto-resize: true
+    margin-top: 75
+    margin-left: 35
+    phantom: true
+
+  Button
+    id: cancelButton
+    !text: tr('Close')
+    color: white
+    width: 80
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    margin-bottom: 10
+    margin-right: 10
+    @onClick: modules.game_npcdialog.hide()
+    padding: 5 10 5 10
+
+  Button
+    id: optionButtonOne
+    !text: tr('Option One')
+    width: 80
+    anchors.right: prev.left
+    anchors.top: prev.top
+    margin-right: 5
+    padding: 5 10 5 10
+
+  Button
+    id: optionButtonTwo
+    !text: tr('Option Two')
+    width: 80
+    anchors.right: prev.left
+    anchors.top: prev.top
+    margin-right: 5
+    visible: false
+    padding: 5 10 5 10
+
+  Button
+    id: optionButtonThree
+    !text: tr('Option Three')
+    width: 80
+    anchors.right: prev.left
+    anchors.top: prev.top
+    margin-right: 5
+    padding: 5 10 5 10

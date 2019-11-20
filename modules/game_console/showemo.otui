@@ -1,0 +1,87 @@
+QuestLabel < Label
+  font: verdana-11px-monochrome
+  text-offset: 2 0
+  focusable: true
+  background-color: alpha
+  $focus:
+    background-color: #444444
+
+
+UIItemQuest < Label
+  font: verdana-11px-monochrome
+  text-offset: 2 0
+  focusable: true
+  color: #aaaaaa
+  background-color: alpha
+
+  $on:
+    color: #00aa00
+  $!on:
+    color: #aaaaaa
+
+  $focus:
+    background-color: #444444
+
+  $on focus:
+    color: #00ff00
+  $!on focus:
+    color: #ffffff
+  UIItem
+    id: jaaj
+    size: 32 32
+    anchors.bottom: parent.top
+    anchors.left: parent.left
+    margin-left: 3
+    margin-bottom: -33
+
+
+MainWindow
+  id: leWindows
+  !text: tr('Emoticons')
+  size: 300 400
+  @onEscape: self:destroy()
+  TextList
+    id: img
+    anchors.top: parent.top
+    anchors.bottom: closeButton.top
+    anchors.left: parent.left
+    focusable: false
+    vertical-scrollbar: questListScrollBar
+    width: 17
+    margin-bottom: 10
+    height: 17
+  TextList
+    id: name
+    anchors.top: parent.top
+    anchors.bottom: closeButton.top
+    anchors.left: img.right
+    anchors.right: questListScrollBar.left
+    focusable: false
+    vertical-scrollbar: questListScrollBar
+    margin-bottom: 10
+    height: 16
+  VerticalScrollBar
+    id: questListScrollBar
+    anchors.top: parent.top
+    anchors.bottom: closeButton.top
+    anchors.right: parent.right
+    margin-bottom: 10
+    step: 14
+    pixels-scroll: true
+  CheckBox
+    id: ignore
+    anchors.bottom: parent.bottom
+    @onClick: modules.game_console.ignoreEmojis(self)
+    anchors.left: parent.left
+  UIItem
+    anchors.top: ignore.top
+    anchors.left: ignore.right
+    margin-left: 3
+    !text: tr('Dont show Emoticons')
+  Button
+    id: closeButton
+    anchors.bottom: parent.bottom
+    anchors.right: parent.right
+    !text: tr('Close')
+    width: 90
+    @onClick: self:getParent():destroy()

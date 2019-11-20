@@ -1,0 +1,1 @@
+name: mod_broadcast description: Show broadcasts and other messages in window author: GabrielTxu website: tibiaking.com scripts: [ bc ] sandboxed: true @onLoad: init() @onUnload: terminate()

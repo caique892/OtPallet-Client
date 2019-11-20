@@ -1,0 +1,99 @@
+EnterGameWindow < MainWindow
+  size: 490 234
+  image-source: img/menulogin1
+  margin-top: 220
+  margin-right: 415
+
+  
+EnterGameTextEdit < UITextEdit
+  font: terminus-10px
+  color: #FFA500
+  size: 197 79
+  text-offset: 5 8
+  opacity: 1
+  padding-top: 32
+  padding-left: 50
+  padding-right: 50
+  image-source: img/account1
+  image-border:2
+  selection-color: 	#FFFF00
+  selection-background-color: #cccccc
+  text-hidden: true
+  $disabled:
+    color: #191970
+    opacity: 0.5
+
+EnterGameCheckBox < UICheckBox
+  size: 28 28
+  image-rect: 0 0 15 15
+  image-source: img/checkbox
+
+  $hover !disabled:
+    color: #ffffff
+
+  $!checked:
+    image-clip: 0 0 28 28
+
+  $hover !checked:
+    image-clip: 0 28 28 28
+
+  $checked:
+    image-clip: 0 56 28 28
+
+  $hover checked:
+    image-clip: 0 112 28 28
+
+  $disabled:
+    image-color: #dfdfdf88
+    color: #dfdfdf88
+    opacity: 0.8
+
+EnterGameButton < UIButton
+  @onClick: EnterGame.doLogin()
+  size: 140 58
+  image-source: img/play  
+  image-clip: 0 0 140 58
+
+  $hover !disabled:
+    image-clip: 0 58 140 58
+
+  $pressed:
+    image-clip: 0 116 140 58
+  
+EnterGameWindow
+  id: enterGame
+  @onEnter: EnterGame.doLogin()
+  
+  EnterGameTextEdit
+    id: accountNameTextEdit
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 26
+    margin-left: 13 
+
+  EnterGameTextEdit
+    id: accountPasswordTextEdit
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 26
+    margin-left: 155
+
+  CheckBox
+    id: rememberPasswordBox
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 125
+    margin-left: 58	
+
+  CheckBox
+    id: autoLoginBox
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 98
+    margin-left: 600
+
+  EnterGameButton
+    anchors.left: parent.left
+    anchors.top: parent.top
+    margin-top: 100
+    margin-left: 150

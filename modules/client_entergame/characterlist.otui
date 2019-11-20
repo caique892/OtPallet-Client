@@ -1,0 +1,150 @@
+CharacterWidget < UIWidget
+  height: 14
+  background-color: alpha
+  &updateOnStates: |
+    function(self)
+      local children = self:getChildren()
+      for i=1,#children do
+        children[i]:setOn(self:isFocused())
+      end
+    end
+  @onFocusChange: self:updateOnStates()
+  @onSetup: self:updateOnStates()
+
+  $focus:
+    background-color: #ffffff22
+
+  Label
+    id: name
+    color: orange
+    anchors.top: parent.top
+    anchors.left:  parent.left
+    font: verdana-11px-monochrome
+    text-auto-resize: true
+    background-color: alpha
+    text-offset: 2 0
+
+    $on:
+      color: #ffffff
+
+  Label
+    id: worldName
+    color: #ffffff
+    color: #aaaaaa
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-right: 5
+    font: verdana-11px-monochrome
+    text-auto-resize: true
+    background-color: alpha
+    &baseText: '(%s)'
+
+    $on:
+      color: #ffffff
+
+MainWindow
+  id: charactersWindow
+  size: 382 292
+  margin-top: 180
+  margin-right: 395
+  image-source: character2.png
+  image-border: 0
+  visible: false
+  @onEnter: CharacterList.doLogin()
+  @onEscape: CharacterList.hide(true)
+  @onSetup: |
+    g_keyboard.bindKeyPress('Up', function() self:getChildById('characters'):focusPreviousChild(KeyboardFocusReason) end, self)
+    g_keyboard.bindKeyPress('Down', function() self:getChildById('characters'):focusNextChild(KeyboardFocusReason) end, self)
+  Creature
+    size: 0 0
+    id: outfitCreatureBox
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 26
+    margin-left: 147
+    padding: 4 4 4 4
+    fixed-creature-size: false
+  TextList
+    size: 198 110
+    id: characters
+    anchors.top: parent.top
+    anchors.left: parent.left
+    anchors.bottom: parent.bottom
+    margin-bottom: 10
+    margin-left: 1
+    margin-top: 1
+    padding: 1
+    focusable: false
+    vertical-scrollbar: characterListScrollBar
+    auto-focus: first
+
+  VerticalScrollBar
+    id: characterListScrollBar
+    anchors.top: parent.top
+    margin-top: 2500
+    anchors.bottom: characters.bottom
+    anchors.right: characters.left
+    step: 14
+    pixels-scroll: true
+
+  Label
+    id: accountStatusLabel
+    color: red
+    !text: tr('Free Account')
+    anchors.left: characters.right
+    anchors.bottom: parent.bottom
+    margin-left: 18
+    margin-bottom: 50
+    text-auto-resize: true
+
+    $on:
+      color: #FF0000
+
+
+  //CheckBox
+  //  id: charAutoLoginBox
+  //  !text: tr('Auto login')
+  //  !tooltip: tr('Auto login selected character on next charlist load')
+  //  anchors.left: parent.left
+  //  anchors.right: outfitCreatureBox.left
+  //  anchors.bottom: next.top
+  //  margin-bottom: 6
+  //  margin-left: 18
+  //  margin-right: 18
+
+  Button
+    id: buttonOk
+    !text: tr('Ok')
+    width: 62
+    anchors.right: next.left
+    anchors.bottom: parent.bottom
+    margin-right: 14
+    @onClick: CharacterList.doLogin()
+
+  Button
+    id: buttonCancel
+    !text: tr('Cancel')
+    width: 62
+    anchors.right: parent.right
+    margin-right: 2
+    anchors.bottom: parent.bottom
+    @onClick: CharacterList.hide(true)
+  Label
+    id: namelabel
+    text: Name: Personagem
+    color: red
+    anchors.left: characters.right
+    anchors.top: outfitCreatureBox.top
+    margin-top: 110
+    margin-left: 18
+    text-auto-resize: true
+  Label
+    id: levellabel
+    text: Level:
+    color: red
+    anchors.left: characters.right
+    anchors.top: namelabel.bottom
+    margin-top: 8
+    margin-left: 18
+    text-auto-resize: true
+

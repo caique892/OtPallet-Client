@@ -1,0 +1,32 @@
+IconPoke < Button
+  width: 40
+  height: 60
+  image-size: 40 40
+  image-clip: 0 0 0 0
+  image-color: white
+  focusable: false
+  anchors.top: parent.top
+  anchors.left: parent.left
+  
+HealthBar < ProgressBar
+  id: healthBar
+  background-color: #ff4444
+  anchors.top: parent.top
+  anchors.left: parent.left
+  anchors.right: parent.right
+  margin: 1  
+  
+Poke < UIProgressRect
+  background: #585858AA
+  percent: 100
+  focusable: false
+  font: verdana-11px-rounded
+  color: #FFFFFF
+  
+UIWindow
+  id: optionsWindow
+  size: 228  50
+  focusable: false
+  &save: true
+  opacity: 0.95
+  image-source: /images/ui/progressbar

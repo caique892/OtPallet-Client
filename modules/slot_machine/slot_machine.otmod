@@ -1,0 +1,11 @@
+Module
+  name: Slot Machine
+  description: Ganhe premios.
+  author: Luis
+  website: none
+  version: 1.0
+  autoload: true
+  sandboxed: true
+  scripts: [ slot_machine ]
+  @onLoad: init()
+  @onUnload: terminate()

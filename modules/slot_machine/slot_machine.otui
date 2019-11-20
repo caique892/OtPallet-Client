@@ -1,0 +1,49 @@
+MainWindow
+  id: tutorialwindow
+  size: 228 228
+  image-source: /images/game/machine/SlotRace
+  padding: 10
+  @onEscape: hide()
+
+    $hover:
+      image-clip: 0 22 23 22
+
+    $pressed:
+      image-clip: 0 44 23 22
+
+  Panel
+    id: shopTabContent
+    size: 150 80
+    margin-bottom: 45
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+
+    UIWidget
+      id: slot1
+      anchors.left: parent.left
+      anchors.top: parent.top
+      margin-left: 8
+      phantom: false
+  
+    UIWidget
+      id: slot2
+      anchors.right: parent.right
+      anchors.top: parent.top
+      margin-right: 8
+      phantom: false
+  
+    UIWidget
+      id: slot3
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.top: parent.top
+      phantom: false
+
+  Button
+    id: btnJogar
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.bottom: parent.bottom
+    !text: tr('Jogar')
+    width: 77
+    margin-left: 5
+    margin-bottom: 23
+    @onClick: Jogar()

@@ -1,0 +1,11 @@
+Module
+  name: Updater
+  description: Start the updater
+  author: vyctor17
+  website: www.otclient.info
+  sandboxed: true
+  autoload: true
+  autoload-priority: 1000
+  scripts: [ Update ]
+  @onLoad: init()
+  @onUnload: terminate()
